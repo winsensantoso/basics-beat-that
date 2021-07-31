@@ -8,8 +8,8 @@ var player1Dice = [];
 var PlayerMode = "player1";
 var NowPlayer1 = "player1";
 var NowPlayer2 = "player2";
-var Player1WinningHistory = [];
-var Player2WinningHistory = [];
+var Player1WinningHistory = 0;
+var Player2WinningHistory = 0;
 var whowon = "";
 
 var main = function (input) {
@@ -81,7 +81,13 @@ var main = function (input) {
         "as Player 1 choose " +
         player1Dice +
         " , " +
-        whowon;
+        whowon +
+        "<br> score so far " +
+        "Player1 " +
+        Player1WinningHistory +
+        " vs " +
+        "Player2 " +
+        Player2WinningHistory;
 
       //resetting the game
       PlayerMode = NowPlayer1;
