@@ -8,6 +8,9 @@ var player1Dice = [];
 var PlayerMode = "player1";
 var NowPlayer1 = "player1";
 var NowPlayer2 = "player2";
+var Player1WinningHistory = [];
+var Player2WinningHistory = [];
+var whowon = "";
 
 var main = function (input) {
   var myOutputValue = "Initialize";
@@ -26,7 +29,7 @@ var main = function (input) {
         " and " +
         guess1[1] +
         " for dice 2" +
-        " <br> Choose the order of the dice, dice 1 first or dice 2 first";
+        " <br> Choose the order of the dice, <br>dice 1 first or dice 2 first";
       return myOutputValue;
     } else {
       while (guess2.length != 2) {
@@ -41,12 +44,10 @@ var main = function (input) {
         " and " +
         guess2[1] +
         " for dice 2" +
-        " <br> Choose the order of the dice, dice 1 first or dice 2 first";
+        " <br> Choose the order of the dice, <br> dice 1 first or dice 2 first";
       return myOutputValue;
     }
   }
-
-  var whowon = [];
 
   if (NowMode == ChooseMode) {
     if (PlayerMode == NowPlayer1) {
@@ -62,6 +63,14 @@ var main = function (input) {
       NowMode = DiceMode;
     } else {
       player2Dice = playerpref(input, guess2);
+      if (player2Dice > player1Dice) {
+        whowon = "You won";
+        Player2WinningHistory += 1;
+      } else {
+        whowon = "Player 1 won";
+        Player1WinningHistory += 1;
+      }
+
       myOutputValue =
         "Player 2, you chose Dice " +
         input +
@@ -70,7 +79,9 @@ var main = function (input) {
         player2Dice +
         "<br> " +
         "as Player 1 choose " +
-        player1Dice;
+        player1Dice +
+        " , " +
+        whowon;
 
       //resetting the game
       PlayerMode = NowPlayer1;
